@@ -7,7 +7,7 @@ function checkRepeatPwd(){
     var password = $("#password").val();
     var repeat = $("#password2").val();
     if(password != repeat){
-        window.alert("两次输入的密码不一样")
+        document.getElementById('wxfhint').innerHTML =("两次输入的密码不一样")
         return false;
     }
     return true
@@ -15,10 +15,10 @@ function checkRepeatPwd(){
 
 function checkMailaddress() {
 	var phone = $("#mobilephone").val();
-    if(phone.length ==0){window.alert("手机号不能为空");return false;}
+    if(phone.length ==0){document.getElementById('wxfhint').innerHTML =("手机号不能为空");return false;}
 	var rule = /^([0-9]{11})$/;
 	if (!rule.test(phone)) {
-		window.alert("手机号必须是11位数字");
+		document.getElementById('wxfhint').innerHTML =("手机号必须是11位数字");
 		return false
     }
     return true
@@ -28,20 +28,20 @@ function checkMailaddress() {
 //检查名字和密码是否满足规格
 function checkPassword() {
     var password = $("#password").val();
-    if(password.length ==0){window.alert("密码不能为空");return false;}
+    if(password.length ==0){document.getElementById('wxfhint').innerHTML =("密码不能为空");return false;}
     var rule = /^\w{6,20}$/;
     if (!rule.test(password)) {
-        window.alert("密码必须满足6~20个字符");
+        document.getElementById('wxfhint').innerHTML =("密码必须满足6~20个字符");
         return false
     }
     return true
 }
 function checkName() {
     var username = $("#email").val();
-    if(username.length ==0){window.alert("用户名不能为空");return false;}
+    if(username.length ==0){document.getElementById('wxfhint').innerHTML =("用户名不能为空");return false;}
     var rule = /^\w{6,20}$/;
     if (!rule.test(username)) {
-        window.alert("用户名必须满足6~20个字符");
+        document.getElementById('wxfhint').innerHTML =("用户名必须满足6~20个字符");
         return false
     }
     return true
@@ -55,7 +55,7 @@ function registAction() {
     var password = $("#password").val();
     var phone = $("#mobilephone").val();
 
-    var n = checkPassword() + checkName()+checkMailaddress()+checkRepeatPwd();
+    var n = checkPassword() +checkMailaddress()+checkRepeatPwd()+checkName();
     if (n != 4) {
         return
     }
@@ -78,11 +78,27 @@ function registAction() {
                     location.href = "login.html";
                 },100);
             } else {
-                window.alert("注册失败："+result.errorInfo);
+                document.getElementById('wxfhint').innerHTML =("注册失败："+result.errorInfo);
             }
         },
-        error : function(e) {
-            window.alert("error,无法连接到后端"+url);
+        error: function (jqXHR, exception) {
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Can NOT connect to server.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            document.getElementById('wxfhint').innerHTML =("后端异常："+msg);
         }
     })
 };

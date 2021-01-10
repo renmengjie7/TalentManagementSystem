@@ -2528,12 +2528,12 @@ input#password {
         </div>
         <div class="boderwraper">
             <div class="tabtoggle login">
-                <a href="javascript:void(0);" class="current" ng-click="change_login_type(2)">
-                    <span class="enterhas ng-binding">帐号登录</span>
+                <a href="login.html" class="current" ng-click="change_login_type(2)">
+                    <span class="enterhas ng-binding">登录</span>
                 </a>
 
-				<a href="javascript:void(0);" ng-click="change_login_type(1)">
-                    <span class="regnew ng-binding"></span>
+				<a href="regist.html" ng-click="change_login_type(1)">
+                    <span class="regnew ng-binding">注册</span>
                 </a>
             </div>
             <div class="inputwrap login-input" ng-class="{errorfocus:emailError}">
@@ -2567,9 +2567,9 @@ input#password {
             <div class="submitwrap">
                 <a href="javascript:login();" class="btn-submit ng-binding" submit-click="submitLogin()">登 录</a>
             </div>
-            <div class="tiplink">
-                <a href="regist.html" ng-mousedown="nofocusclick($event,register_url)">没有帐号，免费注册 <i class="icon-arrow"></i></a>
-            </div>
+            
+                <p style="text-align: center;color: red" id="wxfhint"></p>
+            
         </div>
     </div>
 </div><input type="submit" class="position_hidden" value=""></form>
