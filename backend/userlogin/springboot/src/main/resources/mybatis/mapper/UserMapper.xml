@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springboot.mapper.UserMapper">
+
+    <select id="selectUserByName" resultType="User">
+        select * from user where name =#{name}
+    </select>
+    <select id="selectUserByPhone" resultType="User">
+        select * from user where phone =#{phone}
+    </select>
+    <insert id="insertUser" parameterType="User">
+        insert into user (name,password,phone) values (#{name},#{password},#{phone})
+    </insert>
+</mapper>

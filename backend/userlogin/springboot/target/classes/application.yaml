@@ -1,0 +1,15 @@
+# 关闭模版引擎的缓存
+spring:
+  thymeleaf:
+    cache: false
+# 数据库
+  datasource:
+    username: root
+    password: HUhaiyang581109
+    url: jdbc:mysql://127.0.0.1:3306/TalentManagement?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+# 整合mybatis
+mybatis:
+  type-aliases-package: com.example.springboot.pojo
+  mapper-locations: classpath:mybatis/mapper/*.xml
